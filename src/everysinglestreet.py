@@ -13,15 +13,15 @@ class GPSPoint:
 
 class Ride:
     def __init__(self, filename):
+        gpx = gpxpy.parse(open(filename, 'r'))
+        self.rideDate = gpx.time
         self.filename = filename
-        self.GPSPoints, self.rideDate = self.parseGPXFile()
+        self.GPSPoints = self.parseGPXFile()
 
     def parseGPXFile(self):
         # read in file create GPX object
         gpx_file = open(self.filename, 'r')
         gpx = gpxpy.parse(gpx_file)
-
-        rideDate = gpx.time
 
         points = []
         for track in gpx.tracks:
@@ -35,5 +35,5 @@ class Ride:
                                 )
                     points.append(point)
         
-        return points, rideDate
+        return points
                     
