@@ -1,7 +1,5 @@
 import gpxpy
 
-from .GPSPoint import GPSPoint
-
 class Ride:
     def __init__(self, filename):
         self._gpx = gpxpy.parse(open(filename, 'r'))
@@ -15,13 +13,6 @@ class Ride:
         for track in self._gpx.tracks:
             for segment in track.segments:
                 for point in segment.points:
-                    point = GPSPoint(
-                                point.latitude
-                                , point.longitude
-                                , point.elevation
-                                , point.time
-                                )
-                    points.append(point)
+                    points.append(tuple([point.latitude, point.longitude]))
         
         return points
-                    

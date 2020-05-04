@@ -1,2 +1,2 @@
-from .GPSPoint import GPSPoint
 from .Ride import Ride
+from .Map import Map
