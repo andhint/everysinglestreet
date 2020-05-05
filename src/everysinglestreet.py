@@ -8,6 +8,7 @@ my_map = Map()
 buffalo = 'data/geo/buffalo_boundary.json'
 my_map.add_city_boundary(buffalo)
 
+# all GPX files of my rides are stored in the data/rides folder
 # read in all GPX files and create a Ride() for each one
 gpx_files = glob.glob('data/rides/*.gpx')
 
