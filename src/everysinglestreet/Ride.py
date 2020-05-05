@@ -7,6 +7,7 @@ class Ride:
         self.filename = filename
         self.gps_points = self.parse_gpx_file()
         self.ride_length_meters = self._gpx.length_2d()
+        self.ride_length_miles = self.ride_length_meters * 0.000621371
 
     def parse_gpx_file(self):
         points = []

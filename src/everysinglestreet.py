@@ -1,24 +1,18 @@
+import glob
+
 from everysinglestreet import Ride, Map
 
-# example usage
-
-# create Ride from GPX file
-my_ride = Ride('data/rides/2020-03-20-18-25.gpx')
-
-# print some info
-print(my_ride.ride_date)
-print(my_ride.ride_length_meters)
-
-# create a map to visualize rides on
 my_map = Map()
 
-# add my ride to the map
-my_map.add_ride_gps_to_map(my_ride)
+# read in municipal boundary
+buffalo = 'data/geo/buffalo_boundary.json'
+my_map.add_city_boundary(buffalo)
 
-# add another one
-my_other_ride = Ride('data/rides/2020-03-26-18-48.gpx')
-my_map.add_ride_gps_to_map(my_other_ride)
+# read in all GPX files and create a Ride() for each one
+gpx_files = glob.glob('data/rides/*.gpx')
 
-# if using in notebook, can just call my_map.map to view
-# otherwise need to save to save to html to view
+for filename in gpx_files:
+    my_ride = Ride(filename)
+    my_map.add_ride_gps_to_map(my_ride)
+
 my_map.save_to_html('docs/map.html')

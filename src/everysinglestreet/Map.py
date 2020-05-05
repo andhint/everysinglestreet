@@ -15,8 +15,16 @@ class Map:
                         color=random.choice(self._colors),
                         weight=4,
                         opacity=1, 
-                        tooltip=Ride.ride_date
+                        tooltip=f"{Ride.ride_length_miles:.1f} miles on {Ride.ride_date:%Y-%m-%d}"
                         ).add_to(self.map)
+
+    def add_city_boundary(self, filename):
+        style = {'fillOpacity': 0.2, 'color': 'black'}
+
+        folium.GeoJson(
+            filename,
+            style_function=lambda x: style
+        ).add_to(self.map)
 
     def save_to_html(self, filename):
         self.map.save(filename)
