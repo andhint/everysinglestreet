@@ -10,6 +10,7 @@ class Ride:
         self.ride_length_miles = self.ride_length_meters * 0.000621371
 
     def parse_gpx_file(self):
+        """Method for parsing GPX file into list of points needed for mapping"""
         points = []
         for track in self._gpx.tracks:
             for segment in track.segments:
